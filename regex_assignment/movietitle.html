@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Title Validation</title>
+    <style>
+        .textbox {
+            margin: 22px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="textbox">
+        <h3>Please enter a movie title :</h3>
+        <input type="text" placeholder="Name and released year..." id="mvTitle"><br><br>
+        <button id="submitBtn">Submit</button>
+    </div>
+
+
+</body>
+<script>
+    const submitButton = document.getElementById('submitBtn');
+
+    submitButton.addEventListener('click', function() {
+        const movieTitleInput = document.getElementById('mvTitle');
+        const movieTitle = movieTitleInput.value;
+        const isValid = validateMovieTitle(movieTitle);
+
+        if (isValid) {
+            const movieTitleDisplay = document.createElement('p');
+            movieTitleDisplay.textContent = "Entered movie title: " + movieTitle;
+            document.body.appendChild(movieTitleDisplay);
+        } else {
+            alert("Invalid movie title format. Please enter it in a valid format.");
+        }
+    });
+
+    function validateMovieTitle(movieTitle) {
+        const pattern = /^.+ \(\d{4}\)$/;
+        return pattern.test(movieTitle);
+    }
+</script>
+
+</html>
