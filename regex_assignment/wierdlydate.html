@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weirdly formatted dates</title>
+    <style>
+        .textbox {
+            margin: 20px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="textbox">
+        <h2>Please enter your date of birth:</h2>
+        <input type="text" placeholder="dd-MMM-yy" id="bod">
+        <button id="btn">Submit</button>
+    </div>
+
+    <script>
+        const btn = document.getElementById('btn');
+
+        btn.addEventListener('click', function () {
+            const birthDateInput = document.getElementById('bod');
+            const birthDate = birthDateInput.value;
+            const isValid = validateBirthDate(birthDate);
+
+            if (isValid) {
+                const birthDateDisplay = document.createElement('p');
+                birthDateDisplay.textContent = "Entered date of birth is: " + birthDate;
+                document.body.appendChild(birthDateDisplay);
+            } else {
+                alert("Invalid date of birth. Please follow the date format.");
+            }
+        });
+
+        function validateBirthDate(birthDate) {
+            const pattern = /^(\d{2})-(\w{3})-(\d{4})$/;
+            return pattern.test(birthDate);
+        }
+    </script>
+
+</body>
+
+</html>
