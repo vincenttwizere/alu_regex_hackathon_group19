@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Handle</title>
+    <style>
+        .textbox {
+            margin: 20px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="textbox">
+        <h3>Please enter your Twitter username :</h3>
+        <input type="text" placeholder="@username" id="username">
+        <button id="Btn">Submit</button>
+    </div>
+
+
+</body>
+<script>
+    const btn = document.getElementById('Btn');
+
+    btn.addEventListener('click', function() {
+        const userNameInput = document.getElementById('username');
+        const userName = userNameInput.value;
+        const isValid = validateTwitterHandle(userName);
+
+        if (isValid) {
+            const userNameDisplay = document.createElement('p');
+            userNameDisplay.textContent = "Entered username: " + userName;
+            document.body.appendChild(userNameDisplay);
+        } else {
+            alert("Invalid username, Please enter a valid username.");
+        }
+    });
+
+    function validateTwitterHandle(userName) {
+        const pattern =  /@(\w+)/g;
+        return pattern.test(userName);
+    }
+</script>
+
+</html>
