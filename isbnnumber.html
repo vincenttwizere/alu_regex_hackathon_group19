@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISBN NUMBER</title>
+    <style>
+        .textbox {
+            margin: 20px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="textbox">
+        <h3>Please enter ISBN number :</h3>
+        <input type="text" placeholder="ISBN xxx-x-xxx-xxxxx-x" id="isbnnumber">
+        <button id="isbnbtn">Submit</button>
+    </div>
+
+
+</body>
+<script>
+    const btn = document.getElementById('isbnbtn');
+
+    btn.addEventListener('click', function() {
+        const isbnNumberInput = document.getElementById('isbnnumber');
+        const isbnNumber = isbnNumberInput.value;
+        const isValid = validateIsbnNumber(isbnNumber);
+
+        if (isValid) {
+            const isbnNumberDisplay = document.createElement('p');
+            isbnNumberDisplay.textContent = "Entered ISBN Number: " + isbnNumber;
+            document.body.appendChild(isbnNumberDisplay);
+        } else {
+            alert("Invalid Isbn Number, Please enter a valid ISBN NUMBER.");
+        }
+    });
+
+    function validateIsbnNumber(isbnNumber) {
+        const pattern = /ISBN (\d{3}-\d-\d{3}-\d{5}-\d)/g;
+        return pattern.test(isbnNumber);
+    }
+</script>
+
+</html>
